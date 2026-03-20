@@ -119,26 +119,6 @@
 
 ---
 
-## 📚 Documentation Files Included
-
-1. **DEVELOPER-DOCUMENTATION-COMPLETE.md** (850+ lines)
-   - Comprehensive analysis of all repositories
-   - Source-verified information
-   - Direct GitHub links for every claim
-
-2. **ai-defra-developer-docs.zip**
-   - Complete structured documentation package
-   - 33 markdown files organized in 8 sections
-   - Setup guides, API reference, architecture docs
-   - Troubleshooting and examples
-
-3. **AI-DEFRA-DEVELOPER-DOCUMENTATION.md**
-   - Initial analysis document
-   - System architecture overview
-   - Service descriptions
-
----
-
 ## 🔗 Repository Links
 
 | Repository | GitHub URL |
@@ -151,31 +131,6 @@
 | Perf Tests | https://github.com/DEFRA/ai-defra-search-perf-tests |
 | Bedrock Stub | https://github.com/DEFRA/ai-defra-search-aws-bedrock-stub |
 
----
-
-## 📝 How to Use This Package
-
-### For Setup
-1. Read DEVELOPER-DOCUMENTATION-COMPLETE.md → "Quick Start Guide"
-2. Extract ai-defra-developer-docs.zip
-3. Follow setup/INSTALLATION.md
-
-### For Development
-1. Read DEVELOPER-DOCUMENTATION-COMPLETE.md → "Service Sections"
-2. Use api-reference/ from the package
-3. Check examples/ for code samples
-
-### For Deployment
-1. Extract ai-defra-developer-docs.zip
-2. Follow deployment/DOCKER.md or deployment/KUBERNETES.md
-3. Use deployment/CHECKLIST.md
-
-### For Troubleshooting
-1. Extract ai-defra-developer-docs.zip
-2. Check troubleshooting/COMMON-ISSUES.md
-3. Use troubleshooting/DEBUGGING.md
-
----
 
 **Generated:** March 20, 2026  
 **Version:** 1.0.0  
