@@ -23,7 +23,7 @@
 
 ### 📚 Developer Package (Structured Guides)
 
-- **ai-defra-developer-docs.zip** (includes)
+- **ai-defra-complete-documentation (v1)/docs-v1** (includes)
   - Complete setup guides (prerequisites, installation, verification)
   - API reference documentation
   - Architecture deep-dive (system design, data flows, service interactions)
@@ -84,11 +84,7 @@
 ---
 
 ## 🚀 Quick Start
-
-1. **Extract this zip file**
-2. **Read DEVELOPER-DOCUMENTATION-COMPLETE.md** for complete overview
-3. **Extract ai-defra-developer-docs.zip** for structured guides
-4. **Navigate by role:**
+ **Navigate by role:**
    - **Developer:** setup/ → docs/ → api-reference/ → architecture/
    - **DevOps:** deployment/ → setup/ → troubleshooting/
    - **Architect:** docs/ → architecture/ → deployment/
