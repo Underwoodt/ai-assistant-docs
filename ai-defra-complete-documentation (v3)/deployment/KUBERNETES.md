@@ -1,10 +1,4 @@
 # Deployment — CDP (Common Deployment Platform)
-
-> 🔴 **This file replaces the previous KUBERNETES.md.**
-> The previous version was a placeholder that admitted "KUBERNETES MANIFESTS NOT FOUND IN SOURCE." No Kubernetes manifests exist in any source repository. The system is deployed to **Defra's CDP (Common Deployment Platform)**, not self-managed Kubernetes.
-
----
-
 ## How This System is Deployed
 
 AI DEFRA Search is deployed to CDP, Defra's shared delivery platform. Docker images are built automatically on merges to `main` for services that include GitHub Actions workflows.
