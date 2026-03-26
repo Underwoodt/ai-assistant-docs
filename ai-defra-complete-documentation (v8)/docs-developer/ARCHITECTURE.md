@@ -8,6 +8,15 @@
 
 AI DEFRA Search is a reference implementation of a Retrieval-Augmented Generation (RAG) assistant built for DEFRA's Core Delivery Platform (CDP). The system prompts have not been extensively optimised and the data structures reflect a generalised design — teams should treat this as an architectural baseline to adapt.
 
+![
+    <img
+        src="MY_SRC_HERE" 
+        width=100%
+        title="My Image"
+        alt="My Image"
+    />
+](images/architecture-overview.png)
+
 ![Architecture Overview](images/architecture-overview.png)
 
 The system runs entirely within CDP. Microsoft Entra ID provides user authentication externally. AWS Bedrock (for LLM inference and embeddings) and S3 sit within the CDP boundary. The CDP Uploader handles file ingestion separately from the main AI Assistant services.
