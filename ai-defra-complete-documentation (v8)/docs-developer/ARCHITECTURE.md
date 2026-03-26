@@ -8,14 +8,9 @@
 
 AI DEFRA Search is a reference implementation of a Retrieval-Augmented Generation (RAG) assistant built for DEFRA's Core Delivery Platform (CDP). The system prompts have not been extensively optimised and the data structures reflect a generalised design — teams should treat this as an architectural baseline to adapt.
 
-![
-    <img
-        src="MY_SRC_HERE" 
-        width=200%
-        title="My Image"
-        alt="My Image"
-    />
-](images/architecture-overview.png)
+<p align="center">
+    <img src="images/architecture-overview.png" alt="Description" width="300">
+</p>
 
 ![Architecture Overview](images/architecture-overview.png)
 
