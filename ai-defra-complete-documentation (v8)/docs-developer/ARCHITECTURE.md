@@ -11,7 +11,7 @@ AI DEFRA Search is a reference implementation of a Retrieval-Augmented Generatio
 ![
     <img
         src="MY_SRC_HERE" 
-        width=100%
+        width=200%
         title="My Image"
         alt="My Image"
     />
