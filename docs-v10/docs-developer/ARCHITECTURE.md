@@ -100,6 +100,176 @@ Key steps:
 4. SQS Worker polls continuously; dequeues message → optional RAG lookup → `converse(history, system_prompt, model)` on Bedrock → saves response to MongoDB → deletes SQS message
 5. Frontend polling receives completed message and updates Redis cache
 
+```mermaid
+
+
+
+
+Uploaded image
+Can you reverse engineer the mermaid code for this diagram
+
+Here’s a clean Mermaid reconstruction of your architecture diagram. I’ve kept grouping (CDP, AI Assistant, External) and main flows:
+
+
+
+
+If you want, I can tighten this further (e.g., styling, colors, or splitting into sequence diagrams for chat vs upload flows).
+
+
+split in sequence diagrams
+
+Absolutely — this diagram breaks nicely into a few separate sequence diagrams.
+
+I’d split it into these three:
+
+authentication
+
+chat with RAG
+
+document upload and storage
+
+1) Authentication flow
+
+
+
+2) Chat flow with RAG and LLM inference
+
+
+
+3) Document and knowledge group retrieval flow
+This is the direct frontend-to-knowledge-service path shown in the diagram.
+
+
+
+
+4) Upload flow
+
+
+
+5) Optional condensed end-to-end view
+If you want one higher-level sequence instead of several smaller ones:
+
+
+
+
+One small note: the original diagram does not explicitly show every response arrow, so I inferred the natural return paths to make the sequence diagrams usable.
+
+I can also turn these into a polished Mermaid set with consistent themes and actor aliases if you want something ready for documentation.
+
+
+generate polished mermaid
+
+Here’s a polished set with consistent naming, grouped responsibilities, and cleaner wording for documentation.
+
+
+
+
+sequenceDiagram
+    autonumber
+    actor User
+    participant FE as Frontend (Node.js)
+    participant Agent as Agent Service (Python)
+    participant Knowledge as Knowledge Service (Python)
+    participant Vector as Knowledge DB (Postgres & Pgvector)
+    participant Bedrock as AWS Bedrock
+
+    rect rgb(245, 245, 220)
+        Note over FE,Bedrock: Chat with retrieval-augmented generation
+        User->>FE: Submit chat prompt
+        FE->>Agent: Send chat request
+
+        Agent->>Knowledge: Request RAG lookup
+        Knowledge->>Bedrock: Generate / query embeddings
+        Bedrock-->>Knowledge: Return embeddings result
+        Knowledge-->>Vector: Semantic Search
+        Vector-->>Knowledge: Return Related Chunks
+        Knowledge-->>Agent: Return retrieved context
+
+        Agent->>Bedrock: Request LLM inference
+        Bedrock-->>Agent: Return generated response
+
+        Agent-->>FE: Return assistant response
+        FE-->>User: Render answer
+    end
+
+
+
+
+
+
+
+
+And here’s a more documentation-ready end-to-end version:
+
+sequenceDiagram
+    autonumber
+    actor User
+    participant FE as Frontend (Node.js)
+    participant Entra as Microsoft Entra ID
+    participant Agent as Agent Service (Python)
+    participant Knowledge as Knowledge Service (Python)
+    participant Uploader as CDP Uploader
+    participant Bedrock as AWS Bedrock
+    participant S3 as S3
+
+    rect rgb(245, 245, 220)
+        Note over FE,Entra: Authentication
+        User->>FE: Open application / sign in
+        FE->>Entra: Request authentication
+        Entra-->>FE: Return token / identity
+        FE-->>User: Establish authenticated session
+    end
+
+    rect rgb(245, 245, 220)
+        Note over FE,Bedrock: Chat with RAG
+        User->>FE: Submit chat prompt
+        FE->>Agent: Send chat request
+        Agent->>Knowledge: Request RAG lookup
+        Knowledge->>Bedrock: Generate / query embeddings
+        Bedrock-->>Knowledge: Return embeddings result
+        Knowledge-->>Agent: Return retrieved context
+        Agent->>Bedrock: Request LLM inference
+        Bedrock-->>Agent: Return generated response
+        Agent-->>FE: Return assistant response
+        FE-->>User: Render answer
+    end
+
+    rect rgb(245, 245, 220)
+        Note over FE,Knowledge: Browse documents
+        User->>FE: Open documents / knowledge groups
+        FE->>Knowledge: Request documents and knowledge groups
+        Knowledge-->>FE: Return available items
+        FE-->>User: Display available content
+    end
+
+    rect rgb(245, 245, 220)
+        Note over FE,S3: Upload documents
+        User->>FE: Upload document
+        FE->>Uploader: Initiate upload
+        Uploader-->>FE: Upload callback / status
+        Uploader->>Knowledge: Notify uploaded file reference
+        Knowledge->>S3: Store file
+        S3-->>Knowledge: Confirm storage
+        Knowledge-->>FE: Mark document available
+        FE-->>User: Show upload complete
+    end
+```
+
+A couple of polish tweaks you might also like:
+
+rename “Generate / query embeddings” to “Embedding lookup” for shorter labels
+
+rename “Mark document available” to “Index document” if indexing is actually happening
+
+add %% comments above each section if this is going into source control
+
+I can also produce a dark-theme styled Mermaid version optimized for Confluence, GitHub, or Markdown docs.
+
+
+
+
+
+
 ![Conversation Flow](images/conversation-flow.png)
 
 ---
