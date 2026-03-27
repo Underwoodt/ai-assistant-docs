@@ -136,7 +136,7 @@ sequenceDiagram
     participant M as MongoDB
     participant B as AWS Bedrock
 
-    rect rgb(255, 249, 196)
+    rect rgb(255, 255, 240)
         Note over U,B: Initial request
         U->>F: POST /start { question, modelId, knowledgeGroupId }
         F->>A: POST /chat { question, conversation_id, model_id, knowledge_group_ids }
@@ -146,7 +146,7 @@ sequenceDiagram
         F->>R: Cache placeholder (response pending)
     end
 
-    rect rgb(255, 249, 196)
+    rect rgb(255, 255, 255)
         Note over U,B: Redirect + initial load
         F-->>U: Redirect to conversation page
         U->>F: GET /start/{conversationId}
@@ -155,9 +155,8 @@ sequenceDiagram
         F-->>U: Show loading state
     end
 
-    rect rgb(255, 249, 196)
-        Note over A,Q: Worker processing (highlighted)
-        Note over A,Q: Worker polls SQS continuously
+    rect rgb(255, 255, 240)
+
         A->>Q: Poll for messages
         Q-->>A: { message_id, conversation_id, question }
         A->>Q: Claim message (queued → processing)
