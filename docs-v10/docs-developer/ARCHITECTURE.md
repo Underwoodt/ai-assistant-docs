@@ -115,12 +115,14 @@ sequenceDiagram
         User->>FE: Submit chat prompt
         FE->>Agent: Send chat request
 
-        Agent->>Knowledge: Request RAG lookup
-        Knowledge->>Bedrock: Generate / query embeddings
-        Bedrock-->>Knowledge: Return embeddings result
-        Knowledge-->>Vector: Semantic Search
-        Vector-->>Knowledge: Return Related Chunks
-        Knowledge-->>Agent: Return retrieved context
+        Opt First Prompt in conversation\nwith Knowledge Group Selected
+            Agent->>Knowledge: Request RAG lookup
+            Knowledge->>Bedrock: Generate / query embeddings
+            Bedrock-->>Knowledge: Return embeddings result
+            Knowledge-->>Vector: Semantic Search
+            Vector-->>Knowledge: Return Related Chunks
+            Knowledge-->>Agent: Return retrieved context
+        End
 
         Agent->>Bedrock: Request LLM inference
         Bedrock-->>Agent: Return generated response
